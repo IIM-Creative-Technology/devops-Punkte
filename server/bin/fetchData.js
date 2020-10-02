@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const fetch = require('node-fetch');
 const chalk = require('chalk');
-const URLQueryBuilder = require('url-query-builder').default;
+const URLQueryBuilder = require('url-query-builder');
 const MySQLQueryBuilder = require('node-querybuilder').QueryBuilder(
   {
     host: process.env.DB_HOST,
@@ -18,7 +18,7 @@ const MySQLQueryBuilder = require('node-querybuilder').QueryBuilder(
 const locale = 'FR';
 
 // encapsulating code in a directly invoked function enables use of async/await
-(async () => {
+const fetchData = (async () => {
   function sendCustomError(message, reason = 'unknown') {
     let customError = new Error(message);
     customError.reason = reason;
@@ -94,8 +94,8 @@ const locale = 'FR';
     // TODO : uncomment
     const regionCodes = [
       'FR',
-      'HK',
-      'US',
+      // 'HK',
+      // 'US',
       // 'FI',
       // 'IN',
       'JP',
@@ -141,7 +141,7 @@ const locale = 'FR';
         regionCodes.find(regionCode => regionCode === region.id),
       );
 
-    await queryMySQL('insert', 'region', regions);
+    await queryMySQL('insert_ignore', 'region', regions);
 
     // Import video categories
 
@@ -169,7 +169,7 @@ const locale = 'FR';
       });
     }
 
-    await queryMySQL('insert', 'videoCategory', videoCategories);
+    await queryMySQL('insert_ignore', 'videoCategory', videoCategories);
 
     // Import videoCategoryHasRegion
 
@@ -190,7 +190,7 @@ const locale = 'FR';
       name: language.snippet.name,
     }));
 
-    await queryMySQL('insert', 'language', languages);
+    await queryMySQL('insert_ignore', 'language', languages);
 
     // Import videos
 
@@ -344,8 +344,8 @@ const locale = 'FR';
       );
     }
 
-    await queryMySQL('insert', 'channel', channels);
-    await queryMySQL('insert', 'video', videos);
+    await queryMySQL('insert_ignore', 'channel', channels);
+    await queryMySQL('insert_ignore', 'video', videos);
 
     // Import videoIsPopularInRegion
 
@@ -379,4 +379,6 @@ const locale = 'FR';
     MySQLQueryBuilder.disconnect();
     console.log(chalk.yellow('Time:'), new Date().getTime() - startTime + 'ms');
   }
-})();
+})
+
+fetchData()

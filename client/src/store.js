@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { api } from '@/api';
 import cloneDeep from 'lodash/cloneDeep';
 import RegionService from '@/services/region.service';
 import CategoryService from '@/services/category.service';
@@ -23,18 +22,18 @@ const models = {
     youtuber1: {
       title: '',
       subscriberCount: 0,
-      likePercentage: 0
+      likePercentage: 0,
     },
     youtuber2: {
       title: '',
       subscriberCount: 0,
-      likePercentage: 0
+      likePercentage: 0,
     },
     youtuber3: {
       title: '',
       subscriberCount: 0,
-      likePercentage: 0
-    }
+      likePercentage: 0,
+    },
   },
 };
 
@@ -140,37 +139,37 @@ export default new Vuex.Store({
       state.categories = [...categories];
     },
     setYoutuber(state, { statsSide, value, index }) {
-      state[`stats${  statsSide}`][`youtuber` + (index + 1)] = value
+      state[`stats${statsSide}`][`youtuber${index + 1}`] = value;
     },
     setVideoId(state, { statsSide, value }) {
-      state[`stats${  statsSide}`].id = value
+      state[`stats${statsSide}`].id = value;
     },
     setMaxVideoDuration(state, { statsSide, value }) {
-      state[`stats${  statsSide}`].maxVideoDuration = value;
+      state[`stats${statsSide}`].maxVideoDuration = value;
     },
     setMinVideoDuration(state, { statsSide, value }) {
-      state[`stats${  statsSide}`].minVideoDuration = value;
+      state[`stats${statsSide}`].minVideoDuration = value;
     },
     setAverageVideoDuration(state, { statsSide, value }) {
-      state[`stats${  statsSide}`].averageVideoDuration = value;
+      state[`stats${statsSide}`].averageVideoDuration = value;
     },
     setLongestVideo(state, { statsSide, value }) {
-      state['stats' + statsSide].longestVideo = value
+      state[`stats${statsSide}`].longestVideo = value;
     },
     setShortestVideo(state, { statsSide, value }) {
-      state['stats' + statsSide].shortestVideo = value
+      state[`stats${statsSide}`].shortestVideo = value;
     },
     setMinLikes(state, { statsSide, value }) {
-      state[`stats${  statsSide}`].minLikes = value;
+      state[`stats${statsSide}`].minLikes = value;
     },
     setMaxLikes(state, { statsSide, value }) {
-      state[`stats${  statsSide}`].maxLikes = value;
+      state[`stats${statsSide}`].maxLikes = value;
     },
     setMinDislikes(state, { statsSide, value }) {
-      state[`stats${  statsSide}`].minDislikes = value;
+      state[`stats${statsSide}`].minDislikes = value;
     },
     setMaxDislikes(state, { statsSide, value }) {
-      state[`stats${  statsSide}`].maxDislikes = value;
+      state[`stats${statsSide}`].maxDislikes = value;
     },
   },
   actions: {
@@ -222,28 +221,31 @@ export default new Vuex.Store({
     getCountries: state => state.countries,
     getCategories: state => state.categories,
     getCompare: state => state.compare,
-    getStats: state => statsSide => state['stats' + statsSide],
-    getMaxVideoDuration: state => statsSide => state['stats' + statsSide].maxVideoDuration,
-    getMinVideoDuration: state => statsSide => state['stats' + statsSide].minVideoDuration,
-    getAverageVideoDuration: state => statsSide => state['stats' + statsSide].averageVideoDuration,
-    getLongestVideo: state => statsSide => state['stats' + statsSide].longestVideo,
-    getShortestVideo: state => statsSide => state['stats' + statsSide].shortestVideo,
+    getStats: state => statsSide => state[`stats${statsSide}`],
+    getMaxVideoDuration: state => statsSide => state[`stats${statsSide}`].maxVideoDuration,
+    getMinVideoDuration: state => statsSide => state[`stats${statsSide}`].minVideoDuration,
+    getAverageVideoDuration: state => statsSide => state[`stats${statsSide}`].averageVideoDuration,
+    getLongestVideo: state => statsSide => state[`stats${statsSide}`].longestVideo,
+    getShortestVideo: state => statsSide => state[`stats${statsSide}`].shortestVideo,
     getYoutubers: state => statsSide => [
-      state['stats' + statsSide].youtuber1,
-      state['stats' + statsSide].youtuber2,
-      state['stats' + statsSide].youtuber3
+      state[`stats${statsSide}`].youtuber1,
+      state[`stats${statsSide}`].youtuber2,
+      state[`stats${statsSide}`].youtuber3,
     ],
-    getId: state => statsSide => state['stats' + statsSide].id,
+    getId: state => statsSide => state[`stats${statsSide}`].id,
 
     getMaxVideoDurations: state => [state.stats1.maxVideoDuration, state.stats2.maxVideoDuration],
     getMinVideoDurations: state => [state.stats1.minVideoDuration, state.stats2.minVideoDuration],
-    getAverageVideoDurations: state => [state.stats1.averageVideoDuration, state.stats2.averageVideoDuration],
+    getAverageVideoDurations: state => [
+      state.stats1.averageVideoDuration,
+      state.stats2.averageVideoDuration,
+    ],
     getLongestVideos: state => [state.stats1.longestVideo, state.stats2.longestVideo],
     getShortestVideos: state => [state.stats1.shortestVideo, state.stats2.shortestVideo],
-    
-    getMinLikes: state => statsSide => state['stats' + statsSide].minLikes,
-    getMaxLikes: state => statsSide => state['stats' + statsSide].maxLikes,
-    getMinDislikes: state => statsSide => state['stats' + statsSide].minDislikes,
-    getMaxDislikes: state => statsSide => state['stats' + statsSide].maxDislikes,
+
+    getMinLikes: state => statsSide => state[`stats${statsSide}`].minLikes,
+    getMaxLikes: state => statsSide => state[`stats${statsSide}`].maxLikes,
+    getMinDislikes: state => statsSide => state[`stats${statsSide}`].minDislikes,
+    getMaxDislikes: state => statsSide => state[`stats${statsSide}`].maxDislikes,
   },
 });
