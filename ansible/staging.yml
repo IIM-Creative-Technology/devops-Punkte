@@ -1,0 +1,7 @@
+- hosts: [staging]
+  become: yes
+  remote_user: root
+
+  roles:
+    - { role: docker, tags: [docker]}
+    - { role: sites, tags: [sites]}
