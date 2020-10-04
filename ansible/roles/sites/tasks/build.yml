@@ -1,2 +1,0 @@
-- name: Find out playbook's path
-  shell: pwd
