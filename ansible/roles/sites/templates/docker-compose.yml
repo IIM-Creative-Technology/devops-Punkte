@@ -8,3 +8,28 @@ services:
       - database_net
   api:
     image: '{{ site_docker_namespace }}/{{ site_api_image_environment }}:latest'
+    depends_on:
+      - db
+    networks:
+      - database_net
+      - api_net
+    environment:
+      DB_USER: root
+      DB_PASSWORD: rootpwd
+      DB_HOST: db
+      DB_SCHEMA: data_tube
+      YOUTUBE_API_KEY: $YOUTUBE_API_KEY
+    ports:
+      - '{{ site_api_port }}:3000'
+  client:
+    image: '{{ site_docker_namespace }}/{{ site_client_image_environment }}:latest' 
+    restart: always
+    ports:
+      - '{{ site_client_port }}:80'
+    depends_on:
+      - api
+    networks:
+      - api_net
+networks:
+  database_net:
+  api_net:

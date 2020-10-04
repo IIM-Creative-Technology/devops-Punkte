@@ -1,6 +1,8 @@
 - hosts: [staging]
   become: yes
   remote_user: root
+  vars_files:
+    - ./inventory/group_vars/staging/vars.yml
 
   roles:
     - { role: docker, tags: [docker]}
