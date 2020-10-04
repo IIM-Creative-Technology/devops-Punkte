@@ -8,6 +8,8 @@ services:
       MYSQL_ROOT_PASSWORD: rootpwd
     networks:
       - database_net
+    ports:
+      - 3306:3306
   api:
     build: 
       context: ./server
