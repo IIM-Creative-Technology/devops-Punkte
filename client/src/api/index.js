@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = 'http://localhost:3000';
+export const API_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3000';
 
 const config = {
   headers: {
