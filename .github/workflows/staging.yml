@@ -42,3 +42,16 @@ jobs:
           file: ./containers/database/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/datatube_db_staging:latest
+      - name: create ssh folder
+        run: |
+          mkdir -p ./keys/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ./keys/.ssh/id_rsa
+          chmod 600 ./keys/.ssh/id_rsa
+      - name: create vault key file
+        run: echo "${{ secrets.VAULT_PASS }}" > ./keys/.vault_pass.txt
+      - name: run ansible playbook
+        env:
+          ANSIBLE_CFG: ./ansible/ansible.cfg
+          ANSIBLE_HOST_KEY_CHECKING: False
+        run: ansible-playbook ./ansible/staging.yml -i ./ansible/inventory/hosts --vault-password-file ./keys/.vault_pass.txt --key-file ./keys/.ssh/id_rsa
+        
