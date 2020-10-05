@@ -44,15 +44,15 @@ Il y'a 2 roles ansible installés avec la commande :
 ```
 ansible-galaxy role install -r requirements.yml -p ./roles
 ```  
-et 1 role [`sites`]((./ansible/roles/sites)) pour lancer les containers via `docker_compose` sur les machines distantes.  
+et 1 role [`sites`](./ansible/roles/sites) pour lancer les containers via `docker_compose` sur les machines distantes.  
 
 ### Améliorations ou optimisations :thinking:
 
-* [] Le build des images docker pourrait être fait sur les machines :question:
-* [] On devrait pouvoir cibler quels images builder en fonction du commit 
-* [] Plutot que d'utiliser 6 images différentes pour 2 environnement on pourrait se contenter du système de tag et de version pour ne créer plus que 3 images différentes pour n environnements
-* [] Déployer la base de données sur un serveur externe ([https://www.scaleway.com/fr/database/](https://www.scaleway.com/fr/database/)) plutot que sur une image
-* [] Gérer les instances avec un outil comme terraform
+* [ ] Le build des images docker pourrait être fait sur les machines :question:
+* [ ] On devrait pouvoir cibler quels images builder en fonction du commit 
+* [ ] Plutot que d'utiliser 6 images différentes pour 2 environnement on pourrait se contenter du système de tag et de version pour ne créer plus que 3 images différentes pour n environnements
+* [ ] Déployer la base de données sur un serveur externe ([https://www.scaleway.com/fr/database/](https://www.scaleway.com/fr/database/)) plutot que sur une image
+* [ ] Gérer les instances avec un outil comme terraform
 
 Toute reco est la bienvenue, vous pouvez ouvrir une PR :raised_hands:
 
