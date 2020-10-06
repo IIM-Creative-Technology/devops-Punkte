@@ -9,6 +9,7 @@
 <script>
 import * as d3 from 'd3';
 import { cloneDeep } from 'lodash';
+import { API_URL } from '../api/index';
 
 export default {
   data() {
@@ -24,7 +25,7 @@ export default {
   },
   methods: {
     async updateData() {
-      const req = await fetch('https://datatubeapi.kevinmanssat.fr/ressources/country/FR/category/10/subscribers/10000-100000');
+      const req = await fetch(`${API_URL}/ressources/country/FR/category/10/subscribers/10000-100000`);
       const res = await req.json();
       console.log(res);
       return false;

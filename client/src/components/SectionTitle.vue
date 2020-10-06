@@ -19,7 +19,7 @@ export default {
     edito: {
       type: String,
       default: 'edito',
-      required: true,
+      required: false,
     },
   },
 };

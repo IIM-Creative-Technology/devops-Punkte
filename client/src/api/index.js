@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://datatubeapi.kevinmanssat.fr';
+export const API_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3000';
 
 const config = {
   headers: {

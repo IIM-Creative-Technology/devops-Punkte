@@ -1,0 +1,36 @@
+name: ci
+on: 
+  push:
+    branches-ignore:
+      - master
+      - staging
+  pull_request:
+    branches-ignore:
+      - master
+      - staging
+jobs:
+  launch-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git clone
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.18'
+      - name: install server dependancies
+        working-directory: ./server
+        run: yarn install
+      - name: lint server files
+        working-directory: ./server
+        run: yarn lint
+      - name: audit server packages
+        working-directory: ./server
+        run: yarn audit-security
+      - name: install client dependancies
+        working-directory: ./client
+        run: yarn install
+      - name: run tests
+        working-directory: ./client
+        run: yarn test:unit
+    

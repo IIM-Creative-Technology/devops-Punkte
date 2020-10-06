@@ -6,7 +6,7 @@
       :hoverEffect="false"
       :clickEffect="false"
       class="particle-background"
-      v-if="hideParticles"
+      v-if="!hideParticles"
     />
     <div class="topbar" v-if="$route.path !== '/'">
       <div class="container">
