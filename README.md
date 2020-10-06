@@ -48,11 +48,12 @@ et 1 role [`sites`](./ansible/roles/sites) pour lancer les containers via `docke
 
 ### Améliorations ou optimisations :thinking:
 
-* [ ] Le build des images docker pourrait être fait sur les machines :question:
+* [ ] Le build des images docker pourrait être fait côté Ansible :question:
 * [ ] On devrait pouvoir cibler quels images builder en fonction du commit 
 * [ ] Plutot que d'utiliser 6 images différentes pour 2 environnement on pourrait se contenter du système de tag et de version pour ne créer plus que 3 images différentes pour n environnements
-* [ ] Déployer la base de données sur un serveur externe ([https://www.scaleway.com/fr/database/](https://www.scaleway.com/fr/database/)) plutot que sur une image
+* [ ] Déployer la base de données sur un serveur externe ([https://www.scaleway.com/fr/database/](https://www.scaleway.com/fr/database/)) plutot que sur une image Docker
 * [ ] Gérer les instances avec un outil comme terraform
+* [ ] Gérer toute la partie automation sur une instance master
 
 Toute reco est la bienvenue, vous pouvez ouvrir une PR :raised_hands:
 
