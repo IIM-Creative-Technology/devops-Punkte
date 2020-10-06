@@ -2,7 +2,7 @@ name: build
 on:
   push:
     branches:
-      - develop
+      - staging
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
