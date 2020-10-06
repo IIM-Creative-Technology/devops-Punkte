@@ -14,11 +14,11 @@ services:
       - database_net
       - api_net
     environment:
-      DB_USER: root
-      DB_PASSWORD: rootpwd
+      DB_USER: '{{ site_db_user }}'
+      DB_PASSWORD: '{{ site_db_pwd }}'
       DB_HOST: db
-      DB_SCHEMA: data_tube
-      YOUTUBE_API_KEY: $YOUTUBE_API_KEY
+      DB_SCHEMA: '{{ site_db_schema }}'
+      YOUTUBE_API_KEY: '{{ site_api_yt_key }}'
     ports:
       - '{{ site_api_port }}:3000'
   client:
