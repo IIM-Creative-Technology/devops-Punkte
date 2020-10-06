@@ -27,4 +27,10 @@ jobs:
       - name: audit server packages
         working-directory: ./server
         run: yarn audit-security
+      - name: install client dependancies
+        working-directory: ./client
+        run: yarn install
+      - name: run tests
+        working-directory: ./client
+        run: yarn test:unit
     
