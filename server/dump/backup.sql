@@ -15,6 +15,21 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema data_tube
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `data_tube` ;
+
+-- -----------------------------------------------------
+-- Schema data_tube
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `data_tube` DEFAULT CHARACTER SET utf8mb4 ;
+USE `data_tube` ;
+
 --
 -- Table structure for table `channel`
 --
@@ -241,7 +256,7 @@ DROP TABLE IF EXISTS `video`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `video` (
   `id` varchar(64) NOT NULL,
-  `title` varchar(128) NOT NULL,
+  `title` varchar(256) NOT NULL,
   `description` varchar(3000) NOT NULL,
   `publishedAt` datetime NOT NULL,
   `duration` int(11) NOT NULL,
