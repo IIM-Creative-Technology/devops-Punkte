@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { VideoService } from '../services/video.service';
-import { GetVideosQuery } from '../DTOs/request/query/getVideos.query.dto'
+import { GetVideosQuery } from '../DTOs/request/query/getVideos.query.dto';
 
 @Controller('videos')
 export class VideoController {

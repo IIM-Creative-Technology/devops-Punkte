@@ -1,0 +1,14 @@
+
+site_db_user: root
+site_db_pwd: rootpwd
+site_db_schema: data_tube
+
+site_api_yt_key: ytkey
+site_api_port: 3000
+
+site_client_port: 80
+
+site_docker_namespace: paartheepan94
+site_db_image_environment: db_staging
+site_api_image_environment: datatube_api_staging
+site_client_image_environment: datatube_client_staging

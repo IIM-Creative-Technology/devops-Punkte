@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  db:
+    build:
+      context: ./server
+      dockerfile: ../containers/database/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpwd
+    networks:
+      - database_net
+    ports:
+      - 3306:3306
+  api:
+    build: 
+      context: ./server
+      args:
+        DB_USER: root
+        DB_PASSWORD: rootpwd
+        DB_HOST: db
+        DB_SCHEMA: datatube
+        YOUTUBE_API_KEY: $YOUTUBE_API_KEY
+    depends_on:
+      - db
+    networks:
+      - database_net
+      - api_net
+    volumes:
+      - ./server/:/app
+      - /app/node_modules
+    environment:
+      DB_USER: root
+      DB_PASSWORD: rootpwd
+      DB_HOST: db
+      DB_SCHEMA: data_tube
+      YOUTUBE_API_KEY: $YOUTUBE_API_KEY
+    ports:
+      - 3000:3000
+  front:
+    image: node:lts-buster
+    working_dir: /app
+    command: bash -c "npm i && npm run serve"
+    networks:
+      - api_net
+    ports:
+      - 81:8080
+    volumes:
+      - ./client/:/app
+      - /app/node_modules
+networks:
+  database_net:
+  api_net:
