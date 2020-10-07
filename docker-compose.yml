@@ -17,7 +17,7 @@ services:
         DB_USER: root
         DB_PASSWORD: rootpwd
         DB_HOST: db
-        DB_SCHEMA: datatube
+        DB_SCHEMA: data_tube
         YOUTUBE_API_KEY: $YOUTUBE_API_KEY
     depends_on:
       - db
