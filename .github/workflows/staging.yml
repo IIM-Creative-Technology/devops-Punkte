@@ -59,11 +59,3 @@ jobs:
         env:
           ANSIBLE_CFG: ./ansible/ansible.cfg
           ANSIBLE_HOST_KEY_CHECKING: False
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          committer: Punkte <paartheepan94@gmail.com>
-          branch: master
-          title: github.event.head_commit.message
-          reviewers: punkte
-        
