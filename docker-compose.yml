@@ -5,17 +5,17 @@ services:
       context: ./server
       dockerfile: ../containers/database/Dockerfile
     environment:
-      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
     networks:
       - database_net
     ports:
-      - 3306:3306
+      - ${DB_PORT:-3306}:3306
   api:
     build: 
       context: ./server
       args:
-        DB_USER: root
-        DB_PASSWORD: rootpwd
+        DB_USER: $DB_ROOT_USER
+        DB_PASSWORD: $DB_ROOT_PASSWORD
         DB_HOST: db
         DB_SCHEMA: data_tube
         YOUTUBE_API_KEY: $YOUTUBE_API_KEY
@@ -28,13 +28,13 @@ services:
       - ./server/:/app
       - /app/node_modules
     environment:
-      DB_USER: root
-      DB_PASSWORD: rootpwd
+      DB_USER: $DB_ROOT_USER
+      DB_PASSWORD: $DB_ROOT_PASSWORD
       DB_HOST: db
       DB_SCHEMA: data_tube
       YOUTUBE_API_KEY: $YOUTUBE_API_KEY
     ports:
-      - 3000:3000
+      - ${API_PORT:-3000}:3000
   front:
     image: node:lts-buster
     working_dir: /app
