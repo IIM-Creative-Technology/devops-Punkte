@@ -59,4 +59,3 @@ jobs:
         env:
           ANSIBLE_CFG: ./ansible/ansible.cfg
           ANSIBLE_HOST_KEY_CHECKING: False
-        
